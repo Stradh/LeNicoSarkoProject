@@ -1039,7 +1039,7 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
-  ShowStartupWindow: 1
+  ShowStartupWindow: 0
   LastVersion: 0.0
   LimitationRange:
     position: {x: 55.97266, y: -18.20076, z: 5.7097964}
