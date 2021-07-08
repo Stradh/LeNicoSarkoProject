@@ -18,17 +18,16 @@ public class PlayerInput : MonoBehaviour {
     private void Awake()
     {
         controller = GetComponent<PlayerController>();
-
     }
 
     private void Update()   {
 
-        if (Input.GetKeyDown(forward)) controller.MoveForward();
-        if (Input.GetKeyDown(back)) controller.MoveBackward();
-        if (Input.GetKeyDown(left)) controller.MoveLeft();
-        if (Input.GetKeyDown(right)) controller.MoveRight();
-        if (Input.GetKeyDown(turnLeft)) controller.RotateLeft();
-        if (Input.GetKeyDown(turnRight)) controller.RotateRight();
+        if (Input.GetKey(forward)) controller.MoveForward();
+        if (Input.GetKey(back)) controller.MoveBackward();
+        if (Input.GetKey(left)) controller.RotateLeft();//controller.MoveLeft();
+        if (Input.GetKey(right)) controller.RotateRight();//controller.MoveRight();
+        /*if (Input.GetKey(turnLeft)) controller.RotateLeft();
+        if (Input.GetKey(turnRight)) controller.RotateRight();*/
 
     }
 }
