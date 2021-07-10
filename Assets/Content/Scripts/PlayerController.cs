@@ -51,12 +51,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void RotateLeft() { if (CheckIfResting()) targetRotation -= Vector3.up * 90f; }
-    public void RotateRight() { if (CheckIfResting()) targetRotation += Vector3.up * 90f; }
-    public void MoveForward() { if (CheckIfResting() && !CheckForWall("forward")) targetGridPos += transform.forward;}
-    public void MoveBackward() { if (CheckIfResting() && !CheckForWall("backward")) targetGridPos -= transform.forward; }
-    public void MoveLeft() { if (CheckIfResting()) targetGridPos -= transform.right; }
-    public void MoveRight() { if (CheckIfResting()) targetGridPos += transform.right; }
+    public void RotateLeft() { if (CheckIfTurning()) targetRotation -= Vector3.up * 90f; }
+    public void RotateRight() { if (CheckIfTurning()) targetRotation += Vector3.up * 90f; }
+    public void MoveForward() { if (CheckIfMoving() && !CheckForWall("forward")) targetGridPos += transform.forward; }
+    public void MoveBackward() { if (CheckIfMoving() && !CheckForWall("backward")) targetGridPos -= transform.forward; }
+    //public void MoveLeft() { if (CheckIfResting()) targetGridPos -= transform.right; }
+    //public void MoveRight() { if (CheckIfResting()) targetGridPos += transform.right; }
 
     private bool CheckForWall(string direction)
     {
@@ -95,16 +95,39 @@ public class PlayerController : MonoBehaviour
         isResting = true;
     }
 
-    private bool CheckIfResting()
+    private IEnumerator WaitForRotation()
     {
+        yield return new WaitForSeconds(0.5f);
+        canWalk = true;
+        isResting = true;
+    }
 
-        if ((Vector3.Distance(transform.position, targetGridPos) < 0.5f) &&
-           (Vector3.Distance(transform.eulerAngles, targetRotation) < 0.5f))
+    private bool CheckIfMoving()
+    {
+        if (Vector3.Distance(transform.position, targetGridPos) < 0.5f)
         {
             if (canWalk)
             {
                 canWalk = false;
                 StartCoroutine(WaitForStep());
+            }
+        }
+        else
+        {
+            isResting = false;
+        }
+
+        return isResting;
+    }
+
+    private bool CheckIfTurning()
+    {
+        if (Vector3.Distance(transform.eulerAngles, targetRotation) < 0.5f)
+        {
+            if (canWalk)
+            {
+                canWalk = false;
+                StartCoroutine(WaitForRotation());
             }
         }
         else
