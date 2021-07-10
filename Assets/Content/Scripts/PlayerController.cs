@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator WaitForStep()
     {
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.25f);
         canWalk = true;
         isResting = true;
     }
