@@ -4,7 +4,8 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(PlayerController))]
-public class PlayerInput : MonoBehaviour {
+public class PlayerInput : MonoBehaviour
+{
 
     [SerializeField] private KeyCode forward = KeyCode.W;
     public KeyCode back = KeyCode.S;
@@ -20,12 +21,12 @@ public class PlayerInput : MonoBehaviour {
         controller = GetComponent<PlayerController>();
     }
 
-    private void Update()   {
-
+    private void Update()
+    {
         if (Input.GetKey(forward)) controller.MoveForward();
-        if (Input.GetKey(back)) controller.MoveBackward();
-        if (Input.GetKey(left)) controller.RotateLeft();//controller.MoveLeft();
-        if (Input.GetKey(right)) controller.RotateRight();//controller.MoveRight();
+        else if (Input.GetKey(back)) controller.MoveBackward();
+        else if (Input.GetKey(left)) controller.RotateLeft();//controller.MoveLeft();
+        else if (Input.GetKey(right)) controller.RotateRight();//controller.MoveRight();
         /*if (Input.GetKey(turnLeft)) controller.RotateLeft();
         if (Input.GetKey(turnRight)) controller.RotateRight();*/
 
