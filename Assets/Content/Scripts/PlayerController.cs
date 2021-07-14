@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
     private Vector3 rayOffSetY = new Vector3(0, 2, 0);
     private float Reach = 1;
     private bool RayHit = false;
+    private bool isRunning = false;
+    private float walkingDelay = 0.25f;
+    private float turningDelay = 0.5f;
 
     public bool smoothTransition = false;
     public float transitionSpeed = 10f;
@@ -25,9 +28,30 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.DrawRay(transform.position, transform.forward * Reach, Color.red);
-
         MovePlayer();
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            if (!isRunning)
+            {
+                isRunning = true;
+                walkingDelay = 0.125f;
+                turningDelay = 0.25f;
+                transitionSpeed *= 2f;
+                transitionRotationSpeed *= 2;
+            }
+        }
+        else
+        {
+            if (isRunning)
+            {
+                isRunning = false;
+                walkingDelay = 0.25f;
+                turningDelay = 0.5f;
+                transitionSpeed = 5f;
+                transitionRotationSpeed = 250;
+            }
+        }
     }
 
     void MovePlayer()
@@ -90,14 +114,14 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator WaitForStep()
     {
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(walkingDelay);
         canWalk = true;
         isResting = true;
     }
 
     private IEnumerator WaitForRotation()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(turningDelay);
         canWalk = true;
         isResting = true;
     }
@@ -134,7 +158,6 @@ public class PlayerController : MonoBehaviour
         {
             isResting = false;
         }
-
         return isResting;
     }
 }
