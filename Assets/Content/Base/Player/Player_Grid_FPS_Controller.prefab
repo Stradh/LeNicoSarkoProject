@@ -63,7 +63,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 1000
-  field of view: 54.4
+  field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -221,7 +221,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   EffectFlags:
     components: []
-  sharedInstanceID: fa6facbe-75f1-4070-8738-b8e17faccb81
+  sharedInstanceID: 904c2da4-b8cc-423b-b095-7c114f59fa57
 --- !u!114 &5886056254020059586
 MonoBehaviour:
   m_ObjectHideFlags: 0
