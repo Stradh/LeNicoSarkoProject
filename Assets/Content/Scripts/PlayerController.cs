@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 
     private RaycastHit hit;
     private Vector3 rayOffSetY = new Vector3(0, 2, 0);
+    private Vector3 floorRayOffSetY = new Vector3(0, 1f, 0);
     private float Reach = 1;
     private bool RayHit = false;
     private bool isRunning = false;
@@ -27,8 +28,9 @@ public class PlayerController : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {
+    {        
         MovePlayer();
+        GroundCollsion();
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -51,6 +53,19 @@ public class PlayerController : MonoBehaviour
                 transitionSpeed = 5f;
                 transitionRotationSpeed = 250;
             }
+        }
+    }
+
+    private void GroundCollsion()
+    {
+        RaycastHit floorHit;
+        Debug.DrawRay(transform.position + floorRayOffSetY, Vector3.down);
+        if (Physics.Raycast(transform.position + floorRayOffSetY, Vector3.down, out floorHit, 1) && floorHit.transform.tag == "Floor")
+        {
+            //Debug.Log("Flooooor");
+            Vector3 targetLocation = floorHit.point;
+            //targetLocation += new Vector3(0, transform.localScale.y /0.5f, 0);
+            transform.position = targetLocation;
         }
     }
 
