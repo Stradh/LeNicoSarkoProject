@@ -60,12 +60,11 @@ public class PlayerController : MonoBehaviour
     {
         RaycastHit floorHit;
         Debug.DrawRay(transform.position + floorRayOffSetY, Vector3.down);
-        if (Physics.Raycast(transform.position + floorRayOffSetY, Vector3.down, out floorHit, 1) && floorHit.transform.tag == "Floor")
+        if (Physics.Raycast(transform.position + floorRayOffSetY, Vector3.down, out floorHit, 3) && floorHit.transform.tag == "Floor")
         {
-            //Debug.Log("Flooooor");
             Vector3 targetLocation = floorHit.point;
-            //targetLocation += new Vector3(0, transform.localScale.y /0.5f, 0);
             transform.position = targetLocation;
+            targetGridPos = new Vector3(targetGridPos.x, targetLocation.y, targetGridPos.z);
         }
     }
 
@@ -143,7 +142,10 @@ public class PlayerController : MonoBehaviour
 
     private bool CheckIfMoving()
     {
-        if (Vector3.Distance(transform.position, targetGridPos) < 0.5f)
+        Debug.Log(transform.position);
+        Debug.Log(targetGridPos);
+
+        if (Vector3.Distance(new Vector3(transform.position.x, transform.position.y, transform.position.z), new Vector3(targetGridPos.x, targetGridPos.y, targetGridPos.z)) < 0.5f)
         {
             if (canWalk)
             {

@@ -1311,77 +1311,6 @@ MonoBehaviour:
   customCookieDistanceFalloffPower: 2
   customAngularFalloffThreshold: 0.8
   customAngularFalloffPower: 2
---- !u!1 &916562780 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 566846022651294473, guid: 9946062f5cc0e594fb9ceab71aeef412,
-    type: 3}
-  m_PrefabInstance: {fileID: 1325255548}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &916562785
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 916562780}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.1999999, y: 0.21332838, z: 0.18822323}
-  m_Center: {x: -0.59999996, y: 1.01, z: 0.69}
---- !u!65 &916562786
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 916562780}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.1999999, y: 0.21332838, z: 0.18822323}
-  m_Center: {x: -0.59999996, y: 1.23, z: 0.87}
---- !u!65 &916562787
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 916562780}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.1999999, y: 0.21332838, z: 0.18822323}
-  m_Center: {x: -0.59999996, y: 0.77, z: 0.48}
---- !u!65 &916562788
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 916562780}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.1999999, y: 0.21332838, z: 0.18822323}
-  m_Center: {x: -0.59999996, y: 0.55, z: 0.3}
---- !u!65 &916562789
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 916562780}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.1999999, y: 0.21332838, z: 0.18822323}
-  m_Center: {x: -0.59999996, y: 0.3288375, z: 0.0941114}
 --- !u!1 &939990763 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4259326228720026161, guid: 06fa916dd68638046906364b8b5fd496,
@@ -1856,6 +1785,16 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Floor
       objectReference: {fileID: 0}
+    - target: {fileID: 720394152111355428, guid: 9946062f5cc0e594fb9ceab71aeef412,
+        type: 3}
+      propertyPath: m_TagString
+      value: Floor
+      objectReference: {fileID: 0}
+    - target: {fileID: 839959427249748438, guid: 9946062f5cc0e594fb9ceab71aeef412,
+        type: 3}
+      propertyPath: m_TagString
+      value: Floor
+      objectReference: {fileID: 0}
     - target: {fileID: 1681632995490603946, guid: 9946062f5cc0e594fb9ceab71aeef412,
         type: 3}
       propertyPath: m_TagString
@@ -1876,7 +1815,22 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Floor
       objectReference: {fileID: 0}
+    - target: {fileID: 3772343341276291012, guid: 9946062f5cc0e594fb9ceab71aeef412,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 4031738028295254464, guid: 9946062f5cc0e594fb9ceab71aeef412,
+        type: 3}
+      propertyPath: m_TagString
+      value: Floor
+      objectReference: {fileID: 0}
     - target: {fileID: 4519286499900086867, guid: 9946062f5cc0e594fb9ceab71aeef412,
+        type: 3}
+      propertyPath: m_TagString
+      value: Floor
+      objectReference: {fileID: 0}
+    - target: {fileID: 4907937105428856111, guid: 9946062f5cc0e594fb9ceab71aeef412,
         type: 3}
       propertyPath: m_TagString
       value: Floor
@@ -1941,6 +1895,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6490163708113619426, guid: 9946062f5cc0e594fb9ceab71aeef412,
+        type: 3}
+      propertyPath: m_TagString
+      value: Floor
+      objectReference: {fileID: 0}
+    - target: {fileID: 6596611619636799601, guid: 9946062f5cc0e594fb9ceab71aeef412,
+        type: 3}
+      propertyPath: m_TagString
+      value: Floor
+      objectReference: {fileID: 0}
     - target: {fileID: 6863040093118586398, guid: 9946062f5cc0e594fb9ceab71aeef412,
         type: 3}
       propertyPath: m_Name
@@ -1954,9 +1918,14 @@ PrefabInstance:
     - target: {fileID: 7013698867920360727, guid: 9946062f5cc0e594fb9ceab71aeef412,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7797289386577540795, guid: 9946062f5cc0e594fb9ceab71aeef412,
+        type: 3}
+      propertyPath: m_TagString
+      value: Floor
+      objectReference: {fileID: 0}
+    - target: {fileID: 8575056735903207572, guid: 9946062f5cc0e594fb9ceab71aeef412,
         type: 3}
       propertyPath: m_TagString
       value: Floor
