@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
     private RaycastHit hit;
     private Vector3 rayOffSetY = new Vector3(0, 2, 0);
     private Vector3 floorRayOffSetY = new Vector3(0, 1f, 0);
@@ -14,6 +13,9 @@ public class PlayerController : MonoBehaviour
     private float walkingDelay = 0.25f;
     private float turningDelay = 0.5f;
 
+
+    public AudioClip stepSound;
+    public AudioClip wallHitSound;
     public bool smoothTransition = false;
     public float transitionSpeed = 10f;
     public float transitionRotationSpeed = 500f;
@@ -28,7 +30,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {        
+    {
         MovePlayer();
         GroundCollsion();
 
@@ -91,10 +93,63 @@ public class PlayerController : MonoBehaviour
 
     public void RotateLeft() { if (CheckIfTurning()) targetRotation -= Vector3.up * 90f; }
     public void RotateRight() { if (CheckIfTurning()) targetRotation += Vector3.up * 90f; }
-    public void MoveForward() { if (CheckIfMoving() && !CheckForWall("forward")) targetGridPos += transform.forward; }
-    public void MoveBackward() { if (CheckIfMoving() && !CheckForWall("backward")) targetGridPos -= transform.forward; }
-    //public void MoveLeft() { if (CheckIfResting()) targetGridPos -= transform.right; }
-    //public void MoveRight() { if (CheckIfResting()) targetGridPos += transform.right; }
+    public void MoveForward()
+    {
+        if (CheckIfMoving() && !CheckForWall("forward"))
+        {
+            targetGridPos += transform.forward;
+            PlayRandomStepSound();
+        }
+        else if (CheckForWall("forward"))
+        {
+            PlayWallHitSound();
+        }
+    }
+
+    public void MoveBackward()
+    {
+        if (CheckIfMoving() && !CheckForWall("backward"))
+        {
+            targetGridPos -= transform.forward;
+            PlayRandomStepSound();
+        }
+        else if (CheckForWall("backward"))
+        {
+            PlayWallHitSound();
+        }
+    }
+
+    public void MoveLeft()
+    {
+        if (CheckIfMoving() && !CheckForWall("left"))
+        {
+            targetGridPos -= transform.right;
+            PlayRandomStepSound();
+        }
+        else if (CheckForWall("left"))
+        {
+            PlayWallHitSound();
+        }
+    }
+
+    public void MoveRight()
+    {
+        if (CheckIfMoving() && !CheckForWall("right"))
+        {
+            targetGridPos += transform.right;
+            PlayRandomStepSound();
+        }
+        else if (CheckForWall("right"))
+        {
+            PlayWallHitSound();
+        }
+    }
+
+    private void PlayWallHitSound()
+    {
+        float randPitch = Random.Range(0.8f, 1);
+        SoundManager.Instance.PlaySoundWithPitch(wallHitSound, randPitch);
+    }
 
     private bool CheckForWall(string direction)
     {
@@ -109,6 +164,20 @@ public class PlayerController : MonoBehaviour
                 break;
             case "backward":
                 if (Physics.Raycast(transform.position + rayOffSetY, transform.forward * -1, out hit, Reach) && hit.transform.tag == "Walls")
+                {
+                    Debug.Log(hit.transform.tag);
+                    return true;
+                }
+                break;
+            case "left":
+                if (Physics.Raycast(transform.position + rayOffSetY, transform.right * -1, out hit, Reach) && hit.transform.tag == "Walls")
+                {
+                    Debug.Log(hit.transform.tag);
+                    return true;
+                }
+                break;
+            case "right":
+                if (Physics.Raycast(transform.position + rayOffSetY, transform.right, out hit, Reach) && hit.transform.tag == "Walls")
                 {
                     Debug.Log(hit.transform.tag);
                     return true;
@@ -138,6 +207,11 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(turningDelay);
         canWalk = true;
         isResting = true;
+    }
+
+    private void PlayRandomStepSound()
+    {
+        SoundManager.Instance.PlaySoundBypassTimeException(stepSound);
     }
 
     private bool CheckIfMoving()
@@ -177,4 +251,98 @@ public class PlayerController : MonoBehaviour
         }
         return isResting;
     }
+
+    #region
+    /*public float moveSpeed = 3f;
+    public float gridSize = 1f;
+
+    private Vector2 input;
+    private bool isMoving = false;
+    private Vector3 startPosition;
+    private Vector3 endPosition;
+    private float t;
+    private float factor;
+
+    public Vector3 groundPosition;
+
+    Vector3 rayPosition;
+    RaycastHit hit;
+
+    Transform myTransform;
+
+    void Start()
+    {
+        myTransform = transform;
+    }
+
+    public void Update()
+    {
+        if (!isMoving)
+        {
+            input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
+            if (Mathf.Abs(input.x) > Mathf.Abs(input.y))
+            {
+                input.y = 0;
+
+                if (input.x > 0)
+                {
+                    rayPosition = new Vector3(myTransform.position.x + 1f, myTransform.position.y, myTransform.position.z);
+                }
+                else if (input.x < 0)
+                {
+                    rayPosition = new Vector3(myTransform.position.x - 1f, myTransform.position.y, myTransform.position.z);
+                }
+            }
+            else
+            {
+                input.x = 0;
+
+                if (input.y > 0)
+                {
+                    rayPosition = new Vector3(myTransform.position.x, myTransform.position.y, myTransform.position.z + 1f);
+                }
+                else if (input.y < 0)
+                {
+                    rayPosition = new Vector3(myTransform.position.x, myTransform.position.y, myTransform.position.z - 1f);
+                }
+            }
+
+            if (input != Vector2.zero)
+            {
+                if (Physics.Raycast(rayPosition, Vector3.down, out hit, 2f))
+                {
+                    groundPosition = hit.point;
+
+                    groundPosition += new Vector3(0, myTransform.localScale.y, 0);
+
+                }
+
+                StartCoroutine(move(myTransform));
+            }
+        }
+    }
+
+    public IEnumerator move(Transform myTransform)
+    {
+        isMoving = true;
+        startPosition = myTransform.position;
+        t = 0;
+
+        endPosition = new Vector3(startPosition.x + System.Math.Sign(input.x) * gridSize,
+        groundPosition.y, startPosition.z + System.Math.Sign(input.y) * gridSize);
+
+        factor = 1f;
+
+        while (t < 1f)
+        {
+            t += Time.deltaTime * (moveSpeed / gridSize) * factor;
+            myTransform.position = Vector3.Lerp(startPosition, endPosition, t);
+            yield return null;
+        }
+
+        isMoving = false;
+        yield return 0;
+    }*/
+    #endregion
 }

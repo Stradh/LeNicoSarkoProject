@@ -221,7 +221,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   EffectFlags:
     components: []
-  sharedInstanceID: 904c2da4-b8cc-423b-b095-7c114f59fa57
+  sharedInstanceID: 102b2288-bb02-44f2-b976-0719c09a7fe3
 --- !u!114 &5886056254020059586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,6 +427,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0570a09f65c77e14c9a5c2adb37e7bcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stepSound: {fileID: 8300000, guid: 80a7b2906c643a04abcec904bd54d450, type: 3}
+  wallHitSound: {fileID: 8300000, guid: 0aee4b55add9bf644ab4245256a784d3, type: 3}
   smoothTransition: 1
   transitionSpeed: 5
   transitionRotationSpeed: 250
