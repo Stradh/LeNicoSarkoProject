@@ -427,8 +427,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0570a09f65c77e14c9a5c2adb37e7bcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stepSound: {fileID: 8300000, guid: 80a7b2906c643a04abcec904bd54d450, type: 3}
-  wallHitSound: {fileID: 8300000, guid: 0aee4b55add9bf644ab4245256a784d3, type: 3}
+  stepSound: {fileID: 8300000, guid: 2b153eebdfbe953418f63ebe2755eda8, type: 3}
+  wallHitSound: {fileID: 8300000, guid: 504b80ff69cff4643a57f40404aaf56a, type: 3}
   smoothTransition: 1
   transitionSpeed: 5
   transitionRotationSpeed: 250
