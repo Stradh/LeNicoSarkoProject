@@ -10,12 +10,17 @@ public class PlayerController : MonoBehaviour
     private float Reach = 1;
     private bool RayHit = false;
     private bool isRunning = false;
+    private bool hasHitWall = false;
     private float walkingDelay = 0.25f;
     private float turningDelay = 0.5f;
+    private List<AudioClip> usedStepSounds = new List<AudioClip>();
+    private List<AudioClip> usedWallSounds = new List<AudioClip>();
+    private AudioClip lastPlayedWallSound;
+    private AudioClip lastPlayedStepSound;
 
-
-    public AudioClip stepSound;
-    public AudioClip wallHitSound;
+    public bool randomStepSounds;
+    public List<AudioClip> stepSounds = new List<AudioClip>();
+    public List<AudioClip> wallHitSounds = new List<AudioClip>();
     public bool smoothTransition = false;
     public float transitionSpeed = 10f;
     public float transitionRotationSpeed = 500f;
@@ -98,11 +103,11 @@ public class PlayerController : MonoBehaviour
         if (CheckIfMoving() && !CheckForWall("forward"))
         {
             targetGridPos += transform.forward;
-            PlayRandomStepSound();
+            StartCoroutine(PlayRandomStepSound());
         }
         else if (CheckForWall("forward"))
         {
-            PlayWallHitSound();
+            StartCoroutine(PlayWallHitSound());
         }
     }
 
@@ -111,11 +116,11 @@ public class PlayerController : MonoBehaviour
         if (CheckIfMoving() && !CheckForWall("backward"))
         {
             targetGridPos -= transform.forward;
-            PlayRandomStepSound();
+            StartCoroutine(PlayRandomStepSound());
         }
         else if (CheckForWall("backward"))
         {
-            PlayWallHitSound();
+            StartCoroutine(PlayWallHitSound());
         }
     }
 
@@ -124,11 +129,11 @@ public class PlayerController : MonoBehaviour
         if (CheckIfMoving() && !CheckForWall("left"))
         {
             targetGridPos -= transform.right;
-            PlayRandomStepSound();
+            StartCoroutine(PlayRandomStepSound());
         }
         else if (CheckForWall("left"))
         {
-            PlayWallHitSound();
+            StartCoroutine(PlayWallHitSound());
         }
     }
 
@@ -137,18 +142,35 @@ public class PlayerController : MonoBehaviour
         if (CheckIfMoving() && !CheckForWall("right"))
         {
             targetGridPos += transform.right;
-            PlayRandomStepSound();
+            StartCoroutine(PlayRandomStepSound());
         }
         else if (CheckForWall("right"))
         {
-            PlayWallHitSound();
+            StartCoroutine(PlayWallHitSound());
         }
     }
 
-    private void PlayWallHitSound()
+    private IEnumerator PlayWallHitSound()
     {
-        float randPitch = Random.Range(0.8f, 1);
-        SoundManager.Instance.PlaySoundWithPitch(wallHitSound, randPitch);
+        if (!hasHitWall && wallHitSounds.Count > 1)
+        {
+            hasHitWall = true;
+            Debug.Log("wall hit");
+            int randomWallSound = Random.Range(0, wallHitSounds.Count);
+
+            if (usedWallSounds.Count == wallHitSounds.Count)
+                usedWallSounds.Clear();
+
+            while (usedWallSounds.Contains(wallHitSounds[randomWallSound]) || lastPlayedWallSound == wallHitSounds[randomWallSound])
+            {
+                randomWallSound = Random.Range(0, wallHitSounds.Count);
+            }
+
+            usedWallSounds.Add(wallHitSounds[randomWallSound]);
+            lastPlayedWallSound = wallHitSounds[randomWallSound];
+            yield return new WaitForSeconds(SoundManager.Instance.PlaySound(wallHitSounds[randomWallSound]));
+            hasHitWall = false;
+        }
     }
 
     private bool CheckForWall(string direction)
@@ -209,9 +231,28 @@ public class PlayerController : MonoBehaviour
         isResting = true;
     }
 
-    private void PlayRandomStepSound()
+    private IEnumerator PlayRandomStepSound()
     {
-        SoundManager.Instance.PlaySoundBypassTimeException(stepSound);
+        if (randomStepSounds || stepSounds.Count > 1)
+        {
+            int randomStepSound = Random.Range(0, stepSounds.Count);
+
+            if (usedStepSounds.Count == stepSounds.Count)
+                usedStepSounds.Clear();
+
+            while (usedStepSounds.Contains(stepSounds[randomStepSound]) || lastPlayedStepSound == stepSounds[randomStepSound])
+            {
+                randomStepSound = Random.Range(0, stepSounds.Count);
+            }
+
+            usedStepSounds.Add(stepSounds[randomStepSound]);
+            lastPlayedStepSound = stepSounds[randomStepSound];
+            yield return new WaitForSeconds(SoundManager.Instance.PlaySoundBypassTimeException(stepSounds[randomStepSound]));
+        }
+        else
+        {
+            yield return new WaitForSeconds(SoundManager.Instance.PlaySoundBypassTimeException(stepSounds[5]));
+        }
     }
 
     private bool CheckIfMoving()
