@@ -2352,7 +2352,7 @@ PrefabInstance:
     - target: {fileID: 5886056254737371638, guid: 3d19d571e13250f45837b13a1ad9295f,
         type: 3}
       propertyPath: wallHitSounds.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5886056254737371638, guid: 3d19d571e13250f45837b13a1ad9295f,
         type: 3}
@@ -2379,6 +2379,11 @@ PrefabInstance:
       propertyPath: wallHitSounds.Array.data[1]
       value: 
       objectReference: {fileID: 8300000, guid: 504b80ff69cff4643a57f40404aaf56a, type: 3}
+    - target: {fileID: 5886056254737371638, guid: 3d19d571e13250f45837b13a1ad9295f,
+        type: 3}
+      propertyPath: wallHitSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: f2c4ed58641869a46aa10f3ebbf34e45, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d19d571e13250f45837b13a1ad9295f, type: 3}
 --- !u!1001 &6229889126986560735
@@ -2388,6 +2393,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1101463530}
     m_Modifications:
+    - target: {fileID: 3752229054704325736, guid: f46046e36dbc3c74ca23c16c8e7b7ab8,
+        type: 3}
+      propertyPath: m_TagString
+      value: FloorDirt
+      objectReference: {fileID: 0}
+    - target: {fileID: 4291560230687255190, guid: f46046e36dbc3c74ca23c16c8e7b7ab8,
+        type: 3}
+      propertyPath: m_TagString
+      value: FloorDirt
+      objectReference: {fileID: 0}
     - target: {fileID: 5908646131941995639, guid: f46046e36dbc3c74ca23c16c8e7b7ab8,
         type: 3}
       propertyPath: m_RootOrder

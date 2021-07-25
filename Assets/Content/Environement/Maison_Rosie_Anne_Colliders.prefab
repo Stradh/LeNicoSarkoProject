@@ -572,7 +572,7 @@ GameObject:
   - component: {fileID: 4184629558091271375}
   m_Layer: 0
   m_Name: StraightStair003
-  m_TagString: Floor
+  m_TagString: FloorWood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -666,7 +666,7 @@ GameObject:
   - component: {fileID: 7013698867920360727}
   m_Layer: 0
   m_Name: StraightStair004
-  m_TagString: Floor
+  m_TagString: FloorWood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -760,7 +760,7 @@ GameObject:
   - component: {fileID: 4794788554321771852}
   m_Layer: 0
   m_Name: Collider_Floor_1F_00
-  m_TagString: Floor
+  m_TagString: FloorWood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -853,7 +853,7 @@ GameObject:
   - component: {fileID: 831954795046920474}
   m_Layer: 0
   m_Name: Collider_Floor_1F_02
-  m_TagString: Floor
+  m_TagString: FloorWood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1690,7 +1690,7 @@ GameObject:
   - component: {fileID: 6285115057793486456}
   m_Layer: 0
   m_Name: Collider_Stair_001
-  m_TagString: Floor
+  m_TagString: FloorWood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1784,7 +1784,7 @@ GameObject:
   - component: {fileID: 9069573603903915708}
   m_Layer: 0
   m_Name: Collider_Floor_B_00
-  m_TagString: Floor
+  m_TagString: FloorStone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2249,7 +2249,7 @@ GameObject:
   - component: {fileID: 5234718462795947323}
   m_Layer: 0
   m_Name: Collider_Floor_B_02
-  m_TagString: Floor
+  m_TagString: FloorStone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3649,7 +3649,7 @@ GameObject:
   - component: {fileID: 8656294789495379013}
   m_Layer: 0
   m_Name: Collider_Stair_000
-  m_TagString: Floor
+  m_TagString: FloorWood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4022,7 +4022,7 @@ GameObject:
   - component: {fileID: 7205501774027656890}
   m_Layer: 0
   m_Name: Collider_Stair_003
-  m_TagString: Floor
+  m_TagString: FloorWood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4581,7 +4581,7 @@ GameObject:
   - component: {fileID: 4570623315082799651}
   m_Layer: 0
   m_Name: Collider_Floor_B_01
-  m_TagString: Floor
+  m_TagString: FloorStone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5139,7 +5139,7 @@ GameObject:
   - component: {fileID: 8766618898981471779}
   m_Layer: 0
   m_Name: Collider_Floor_1F_03
-  m_TagString: Floor
+  m_TagString: FloorStone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5511,7 +5511,7 @@ GameObject:
   - component: {fileID: 5038826847253727550}
   m_Layer: 0
   m_Name: Collider_Floor_B_03
-  m_TagString: Floor
+  m_TagString: FloorStone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6694,7 +6694,7 @@ GameObject:
   - component: {fileID: 5093393399379344871}
   m_Layer: 0
   m_Name: Collider_Stair_002
-  m_TagString: Floor
+  m_TagString: FloorWood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6788,7 +6788,7 @@ GameObject:
   - component: {fileID: 5915507789270214601}
   m_Layer: 0
   m_Name: Collider_Floor_1F_01
-  m_TagString: Floor
+  m_TagString: FloorWood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8124,7 +8124,7 @@ GameObject:
   - component: {fileID: 2130165430099732518}
   m_Layer: 0
   m_Name: Collider_008
-  m_TagString: Floor
+  m_TagString: FloorWood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9147,7 +9147,7 @@ GameObject:
   - component: {fileID: 4452407860461988681}
   m_Layer: 0
   m_Name: Collider_Floor_1F_04
-  m_TagString: Floor
+  m_TagString: FloorStone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

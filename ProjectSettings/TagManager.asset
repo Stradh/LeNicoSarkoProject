@@ -6,6 +6,15 @@ TagManager:
   tags:
   - Fire
   - Walls
+  - Floor
+  - FloorDirt
+  - FloorGrass
+  - FloorMetal
+  - FloorMud
+  - FloorStone
+  - FloorWater
+  - FloorWood
+  - FloorCarpet
   layers:
   - Default
   - TransparentFX
