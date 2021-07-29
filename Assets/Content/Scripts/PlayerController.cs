@@ -75,13 +75,19 @@ public class PlayerController : MonoBehaviour
     private void GroundCollsion()
     {
         RaycastHit floorHit;
-        Debug.DrawRay(transform.position + floorRayOffSetY, Vector3.down);
+        if (Physics.Raycast(transform.position + floorRayOffSetY, Vector3.down, out floorHit, 3) && floorHit.transform.tag.Contains("Floor"))
+        {
+            Vector3 targetLocation = floorHit.point;
+            targetGridPos = new Vector3(targetGridPos.x, targetLocation.y, targetGridPos.z);
+        }
+    }
+
+    private void CheckForGroundType()
+    {
+        RaycastHit floorHit;
         if (Physics.Raycast(transform.position + floorRayOffSetY, Vector3.down, out floorHit, 3) && floorHit.transform.tag.Contains("Floor"))
         {
             floorType = floorHit.transform.tag.Substring(5);
-            Debug.Log(floorType);
-            Vector3 targetLocation = floorHit.point;
-            targetGridPos = new Vector3(targetGridPos.x, targetLocation.y, targetGridPos.z);
         }
     }
 
@@ -110,51 +116,32 @@ public class PlayerController : MonoBehaviour
     public void RotateRight() { if (CheckIfTurning()) targetRotation += Vector3.up * 90f; }
     public void MoveForward()
     {
-        if (CheckIfMoving() && !CheckForWall("forward"))
-        {
-            targetGridPos += transform.forward;
-            StartCoroutine(PlayRandomStepSound());
-        }
-        else if (CheckForWall("forward"))
-        {
-            StartCoroutine(PlayWallHitSound());
-        }
+        MoveDirection(transform.forward, "forward");
     }
 
     public void MoveBackward()
     {
-        if (CheckIfMoving() && !CheckForWall("backward"))
-        {
-            targetGridPos -= transform.forward;
-            StartCoroutine(PlayRandomStepSound());
-        }
-        else if (CheckForWall("backward"))
-        {
-            StartCoroutine(PlayWallHitSound());
-        }
+        MoveDirection(-transform.forward, "backward");
     }
 
     public void MoveLeft()
     {
-        if (CheckIfMoving() && !CheckForWall("left"))
-        {
-            targetGridPos -= transform.right;
-            StartCoroutine(PlayRandomStepSound());
-        }
-        else if (CheckForWall("left"))
-        {
-            StartCoroutine(PlayWallHitSound());
-        }
+        MoveDirection(-transform.right, "left");
     }
 
     public void MoveRight()
     {
-        if (CheckIfMoving() && !CheckForWall("right"))
+        MoveDirection(transform.right, "right");
+    }
+
+    private void MoveDirection(Vector3 direction, string dir)
+    {
+        if (CheckIfMoving() && !CheckForWall(dir))
         {
-            targetGridPos += transform.right;
+            targetGridPos += direction;
             StartCoroutine(PlayRandomStepSound());
         }
-        else if (CheckForWall("right"))
+        else if (isResting && CheckForWall(dir))
         {
             StartCoroutine(PlayWallHitSound());
         }
@@ -165,7 +152,6 @@ public class PlayerController : MonoBehaviour
         if (!hasHitWall && wallHitSounds.Count > 1)
         {
             hasHitWall = true;
-            Debug.Log("wall hit");
             int randomWallSound = Random.Range(0, wallHitSounds.Count);
 
             if (usedWallSounds.Count == wallHitSounds.Count)
@@ -178,7 +164,7 @@ public class PlayerController : MonoBehaviour
 
             usedWallSounds.Add(wallHitSounds[randomWallSound]);
             lastPlayedWallSound = wallHitSounds[randomWallSound];
-            yield return new WaitForSeconds(SoundManager.Instance.PlaySound(wallHitSounds[randomWallSound]));
+            yield return new WaitForSeconds(SoundManager.Instance.PlaySound(wallHitSounds[randomWallSound], 0.2f));
             hasHitWall = false;
         }
     }
@@ -190,28 +176,24 @@ public class PlayerController : MonoBehaviour
             case "forward":
                 if (Physics.Raycast(transform.position + rayOffSetY, transform.forward, out hit, Reach) && hit.transform.tag == "Walls")
                 {
-                    Debug.Log(hit.transform.tag);
                     return true;
                 }
                 break;
             case "backward":
                 if (Physics.Raycast(transform.position + rayOffSetY, transform.forward * -1, out hit, Reach) && hit.transform.tag == "Walls")
                 {
-                    Debug.Log(hit.transform.tag);
                     return true;
                 }
                 break;
             case "left":
                 if (Physics.Raycast(transform.position + rayOffSetY, transform.right * -1, out hit, Reach) && hit.transform.tag == "Walls")
                 {
-                    Debug.Log(hit.transform.tag);
                     return true;
                 }
                 break;
             case "right":
                 if (Physics.Raycast(transform.position + rayOffSetY, transform.right, out hit, Reach) && hit.transform.tag == "Walls")
                 {
-                    Debug.Log(hit.transform.tag);
                     return true;
                 }
                 break;
@@ -243,6 +225,8 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator PlayRandomStepSound()
     {
+        yield return new WaitForSeconds(walkingDelay);
+        CheckForGroundType();
         switch (floorType)
         {
             case "Wood":
@@ -285,19 +269,16 @@ public class PlayerController : MonoBehaviour
 
             usedStepSounds.Add(stepSounds[randomStepSound]);
             lastPlayedStepSound = stepSounds[randomStepSound];
-            yield return new WaitForSeconds(SoundManager.Instance.PlaySoundBypassTimeException(stepSounds[randomStepSound]));
+            yield return new WaitForSeconds(SoundManager.Instance.PlaySoundBypassTimeException(stepSounds[randomStepSound], 0.15f));
         }
         else
         {
-            yield return new WaitForSeconds(SoundManager.Instance.PlaySoundBypassTimeException(stepSounds[5]));
+            yield return new WaitForSeconds(SoundManager.Instance.PlaySoundBypassTimeException(stepSounds[5], 0.15f));
         }
     }
 
     private bool CheckIfMoving()
     {
-        Debug.Log(transform.position);
-        Debug.Log(targetGridPos);
-
         if (Vector3.Distance(new Vector3(transform.position.x, transform.position.y, transform.position.z), new Vector3(targetGridPos.x, targetGridPos.y, targetGridPos.z)) < 0.5f)
         {
             if (canWalk)
