@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     private AudioClip lastPlayedWallSound;
     private AudioClip lastPlayedStepSound;
 
+    public float stepVolume;
+    public float gruntVolume;
     public bool randomStepSounds;
     public List<AudioClip> woodStepSounds = new List<AudioClip>();
     public List<AudioClip> stoneStepSounds = new List<AudioClip>();
@@ -164,7 +166,7 @@ public class PlayerController : MonoBehaviour
 
             usedWallSounds.Add(wallHitSounds[randomWallSound]);
             lastPlayedWallSound = wallHitSounds[randomWallSound];
-            yield return new WaitForSeconds(SoundManager.Instance.PlaySound(wallHitSounds[randomWallSound], 0.2f));
+            yield return new WaitForSeconds(SoundManager.Instance.PlaySound(wallHitSounds[randomWallSound], gruntVolume));
             hasHitWall = false;
         }
     }
@@ -225,7 +227,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator PlayRandomStepSound()
     {
-        yield return new WaitForSeconds(walkingDelay);
+        yield return new WaitForSeconds(walkingDelay*0.5f);
         CheckForGroundType();
         switch (floorType)
         {
@@ -269,11 +271,11 @@ public class PlayerController : MonoBehaviour
 
             usedStepSounds.Add(stepSounds[randomStepSound]);
             lastPlayedStepSound = stepSounds[randomStepSound];
-            yield return new WaitForSeconds(SoundManager.Instance.PlaySoundBypassTimeException(stepSounds[randomStepSound], 0.15f));
+            yield return new WaitForSeconds(SoundManager.Instance.PlaySoundBypassTimeException(stepSounds[randomStepSound], stepVolume));
         }
         else
         {
-            yield return new WaitForSeconds(SoundManager.Instance.PlaySoundBypassTimeException(stepSounds[5], 0.15f));
+            yield return new WaitForSeconds(SoundManager.Instance.PlaySoundBypassTimeException(stepSounds[5], stepVolume));
         }
     }
 
