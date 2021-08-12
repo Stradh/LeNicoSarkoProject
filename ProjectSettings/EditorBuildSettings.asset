@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Content/Scenes/Dungeon Crawler/DC House Rosie-Anne/Maison_Rossie_Anne.unity
+    guid: 051fe93013d21d14ebbc9fdd078edada
   m_configObjects: {}
