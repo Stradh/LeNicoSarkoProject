@@ -221,7 +221,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   EffectFlags:
     components: []
-  sharedInstanceID: 102b2288-bb02-44f2-b976-0719c09a7fe3
+  sharedInstanceID: 82a8bcdc-a96c-4f5b-bb9a-ac0a5b34bbab
 --- !u!114 &5886056254020059586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,8 +427,103 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0570a09f65c77e14c9a5c2adb37e7bcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stepSound: {fileID: 8300000, guid: 2b153eebdfbe953418f63ebe2755eda8, type: 3}
-  wallHitSound: {fileID: 8300000, guid: 504b80ff69cff4643a57f40404aaf56a, type: 3}
+  stepSounds: []
+  stepVolume: 0.15
+  gruntVolume: 0.25
+  randomStepSounds: 0
+  woodStepSounds:
+  - {fileID: 8300000, guid: a67478320e980b2488ed8a37b8140701, type: 3}
+  - {fileID: 8300000, guid: 9a1c5cb1940092b459b4679851aac605, type: 3}
+  - {fileID: 8300000, guid: 94b47c69de1892d44be7754fe573d30c, type: 3}
+  - {fileID: 8300000, guid: 92d9408faee0469438de434dee05b13e, type: 3}
+  - {fileID: 8300000, guid: e074ddc8e67c29b41b793dddce0690dd, type: 3}
+  - {fileID: 8300000, guid: 2b153eebdfbe953418f63ebe2755eda8, type: 3}
+  - {fileID: 8300000, guid: 6e5ebbc4373a9cc45acbf801820559c5, type: 3}
+  - {fileID: 8300000, guid: ed5a69cf20ec1fa48a734d2379205d84, type: 3}
+  - {fileID: 8300000, guid: 686b5ed8f675eb546a854f4748572418, type: 3}
+  - {fileID: 8300000, guid: 053e226f1daf77c4d876ca745f3a4533, type: 3}
+  - {fileID: 8300000, guid: 80a7b2906c643a04abcec904bd54d450, type: 3}
+  stoneStepSounds:
+  - {fileID: 8300000, guid: 3693ebecff58b694ebc00f97310beec3, type: 3}
+  - {fileID: 8300000, guid: 0f98fcf673a0c7f41864acd298a1d234, type: 3}
+  - {fileID: 8300000, guid: 941b1f2622cc9314ab867d55319f63a9, type: 3}
+  - {fileID: 8300000, guid: 1665267443a866849a1ff63f17b068b2, type: 3}
+  - {fileID: 8300000, guid: f21586d9634f1ac4c92100603c09842c, type: 3}
+  - {fileID: 8300000, guid: 8f33bb6e1c8453349ad54ffaca329d8d, type: 3}
+  - {fileID: 8300000, guid: b506980aeb8b48e4395b905da6a7fa60, type: 3}
+  - {fileID: 8300000, guid: 82db64c03c7bdd649a0241c32ea10489, type: 3}
+  - {fileID: 8300000, guid: 27fe24ea3da7ae34fa36b69ab2c852ef, type: 3}
+  - {fileID: 8300000, guid: 55ff476b142306f4a97bae2991fb80b4, type: 3}
+  dirtStepSounds:
+  - {fileID: 8300000, guid: 8570f0a1ab3750f4f95e8ca5d29ab32e, type: 3}
+  - {fileID: 8300000, guid: 3d69b066217846045917a39edb4619ce, type: 3}
+  - {fileID: 8300000, guid: 9d2d0b4212ee8ae449f32a3c97ce46f6, type: 3}
+  - {fileID: 8300000, guid: 02bd590382f669c4fba3cfc0ea660bc4, type: 3}
+  - {fileID: 8300000, guid: c2cbb3b85b0a34a4c925b85e6f22235b, type: 3}
+  - {fileID: 8300000, guid: 1047a1228ab5b9e438afbe7e731f006b, type: 3}
+  - {fileID: 8300000, guid: 2e91ffb415e2b4e4486b407a1dba0f40, type: 3}
+  - {fileID: 8300000, guid: 3bb69421d0447db4aac1d489b06ae3e1, type: 3}
+  - {fileID: 8300000, guid: 45697a798eaf81441b5c74ebd8afba52, type: 3}
+  - {fileID: 8300000, guid: 986389ff69393b4498ec9f67d32b5bdd, type: 3}
+  grassStepSounds:
+  - {fileID: 8300000, guid: 9b89f26fec366e443ac4f2a3893dd85e, type: 3}
+  - {fileID: 8300000, guid: fc1b8c83f3c8d12458b7ccd53f21a680, type: 3}
+  - {fileID: 8300000, guid: 11d3f7a55b502ff41b2243ab13ddb94e, type: 3}
+  - {fileID: 8300000, guid: 33ddba6ea6ed92245b44b0ee3e642568, type: 3}
+  - {fileID: 8300000, guid: 5e0b3d13ed5957143b5430d86420ebcc, type: 3}
+  - {fileID: 8300000, guid: 945f052daa9e25a41b3940f05c9b618b, type: 3}
+  - {fileID: 8300000, guid: 15d7b5b58e34e664385b2a7cb9927647, type: 3}
+  - {fileID: 8300000, guid: 3fbd491642dc8a34898e6359cafe5070, type: 3}
+  - {fileID: 8300000, guid: 6092acc5649ef734ea8a9227dedb4b0a, type: 3}
+  - {fileID: 8300000, guid: 4c4aba74e97c4c8419cc82a7317e4b64, type: 3}
+  metalStepSounds:
+  - {fileID: 8300000, guid: c689a0838cc4f8f48a9a7d86a1396274, type: 3}
+  - {fileID: 8300000, guid: 1a73a644ed08a4a47a7d2a04c7917f66, type: 3}
+  - {fileID: 8300000, guid: aa242f65c153fd1408778bad64dee366, type: 3}
+  - {fileID: 8300000, guid: cbfecaa4cbe75604a9e7144fba0f7c4c, type: 3}
+  - {fileID: 8300000, guid: 7f4884e0bd6119f4ba3f1edba1bb19ef, type: 3}
+  - {fileID: 8300000, guid: 3d9be0a296580864f9212c3716190ef4, type: 3}
+  - {fileID: 8300000, guid: 5e36012db45ceb043a4143c754eea7d6, type: 3}
+  - {fileID: 8300000, guid: 289c4e32b7d96ca458d29cbdb9c5c254, type: 3}
+  - {fileID: 8300000, guid: 1b4254d638a87ab4481420f5a902130f, type: 3}
+  - {fileID: 8300000, guid: 3157e3004439310449a8a2c86b124e13, type: 3}
+  mudStepSounds:
+  - {fileID: 8300000, guid: 18c74bf31d396c5499503d8e03163061, type: 3}
+  - {fileID: 8300000, guid: d14e1c08c2f68874eafff30c9e4248a5, type: 3}
+  - {fileID: 8300000, guid: b0ab850cebfbbec41b362988b2b3a416, type: 3}
+  - {fileID: 8300000, guid: c5e9a23398cd0e347b0ea4717ec7e5df, type: 3}
+  - {fileID: 8300000, guid: 2d763bd9b0dda9a4ba86fa76687ab693, type: 3}
+  - {fileID: 8300000, guid: 58d08ac901e318d4dbfa5d2b863e4ca9, type: 3}
+  - {fileID: 8300000, guid: 2a14486b09f16d84c841993c96c91c3b, type: 3}
+  - {fileID: 8300000, guid: 0725b79a2cddf5647bc0e820cac4a079, type: 3}
+  - {fileID: 8300000, guid: 91bf7171b27eeac45b1d6798a3e8aecd, type: 3}
+  - {fileID: 8300000, guid: ed151a6c25f77e247b1db074113b229c, type: 3}
+  wallHitSounds:
+  - {fileID: 8300000, guid: e4972060aab27824e9c546f54e9afabd, type: 3}
+  - {fileID: 8300000, guid: 504b80ff69cff4643a57f40404aaf56a, type: 3}
+  - {fileID: 8300000, guid: f2c4ed58641869a46aa10f3ebbf34e45, type: 3}
+  waterStepSounds:
+  - {fileID: 8300000, guid: b9339fea359b65148be7568a8a1fa1e1, type: 3}
+  - {fileID: 8300000, guid: 4a6ab0df34df66c4cba5247074718d68, type: 3}
+  - {fileID: 8300000, guid: cf2d08c930aec4547922cccbcbb6898b, type: 3}
+  - {fileID: 8300000, guid: fcc911b7000eb3a48a820f1f31f5372e, type: 3}
+  - {fileID: 8300000, guid: 1b6fa740dc5337a478fb1d2ff605f45e, type: 3}
+  - {fileID: 8300000, guid: 068dc5ddaca51d14183663b08965641d, type: 3}
+  - {fileID: 8300000, guid: 2214ffb80439a3443ad55dcd3a304334, type: 3}
+  - {fileID: 8300000, guid: 13f9c5cc35476304e8327bd3ad78c288, type: 3}
+  - {fileID: 8300000, guid: f799b3eb631e88140b315d2eb76aff4d, type: 3}
+  - {fileID: 8300000, guid: c0d6209e59c51d440b12d00fb2d68443, type: 3}
+  carpetStepSounds:
+  - {fileID: 8300000, guid: 127025b7e8be63f4c89419b86f1adcc0, type: 3}
+  - {fileID: 8300000, guid: 3b2ae5d474910d5468b0f033bcc28eda, type: 3}
+  - {fileID: 8300000, guid: 6cb1e4c16165e1b48b97337eb964f68f, type: 3}
+  - {fileID: 8300000, guid: 3041a8a75883ad141b57fc44c2588715, type: 3}
+  - {fileID: 8300000, guid: 2f64a3b0826bd7545a667243713b73e5, type: 3}
+  - {fileID: 8300000, guid: 3c4901f8e2f223349a7e79d16407721d, type: 3}
+  - {fileID: 8300000, guid: f5515205e4c41fe459d594deee2ce762, type: 3}
+  - {fileID: 8300000, guid: 48bcb53cd26386840ac2d53b750eab08, type: 3}
+  - {fileID: 8300000, guid: eff1fe19435cf4d4f8ae2f64c46633ef, type: 3}
+  - {fileID: 8300000, guid: 41a927885f7c33445a9a78fc4aa2ce0b, type: 3}
   smoothTransition: 1
   transitionSpeed: 5
   transitionRotationSpeed: 250
@@ -463,6 +558,8 @@ GameObject:
   - component: {fileID: 5886056255111071479}
   - component: {fileID: 5886056255111071480}
   - component: {fileID: 5886056255111071481}
+  - component: {fileID: 5886056253688754596}
+  - component: {fileID: 5886056253688754595}
   m_Layer: 0
   m_Name: Frederick Jr.
   m_TagString: Untagged
@@ -532,3 +629,34 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!136 &5886056253688754596
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5886056255111071476}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.1
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5886056253688754595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5886056255111071476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6757b231cedd544c583ef8aeaf773b2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thickness: 0
+  material: {fileID: 0}
+  filter: -65535
+  m_SourceCollider: {fileID: 5886056253688754596}
+  m_DistanceField: {fileID: 0}
