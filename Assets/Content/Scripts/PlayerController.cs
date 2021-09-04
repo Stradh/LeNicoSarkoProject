@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private float turningDelay = 0.5f;
     private List<AudioClip> usedStepSounds = new List<AudioClip>();
     private List<AudioClip> usedWallSounds = new List<AudioClip>();
-    public List<AudioClip> stepSounds = new List<AudioClip>();
+    private List<AudioClip> stepSounds = new List<AudioClip>();
     private AudioClip lastPlayedWallSound;
     private AudioClip lastPlayedStepSound;
 
@@ -140,6 +140,7 @@ public class PlayerController : MonoBehaviour
     {
         if (CheckIfMoving() && !CheckForWall(dir))
         {
+            Debug.Log(direction + " Direction");
             targetGridPos += direction;
             StartCoroutine(PlayRandomStepSound());
         }
@@ -213,65 +214,67 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator WaitForStep()
     {
-        yield return new WaitForSeconds(walkingDelay);
+        yield return new WaitForSeconds(walkingDelay + 0.01f);
+        Debug.Log("CAN WALK TRUE !!!");
         canWalk = true;
         isResting = true;
     }
 
     private IEnumerator WaitForRotation()
     {
-        yield return new WaitForSeconds(turningDelay);
+        yield return new WaitForSeconds(turningDelay + 0.01f);
+        Debug.Log("CAN WALK TRUE !!!");
         canWalk = true;
         isResting = true;
     }
 
+    string currentFloorType = "";
+
     private IEnumerator PlayRandomStepSound()
     {
-        yield return new WaitForSeconds(walkingDelay*0.5f);
+        yield return new WaitForSeconds(walkingDelay * 0.5f);
         CheckForGroundType();
-        switch (floorType)
+        if (floorType != currentFloorType || stepSounds.Count == 0)
         {
-            case "Wood":
-                stepSounds = woodStepSounds;
-                break;
-            case "Dirt":
-                stepSounds = dirtStepSounds;
-                break;
-            case "Grass":
-                stepSounds = grassStepSounds;
-                break;
-            case "Metal":
-                stepSounds = metalStepSounds;
-                break;
-            case "Mud":
-                stepSounds = mudStepSounds;
-                break;
-            case "Water":
-                stepSounds = waterStepSounds;
-                break;
-            case "Carpet":
-                stepSounds = carpetStepSounds;
-                break;
-            case "Stone":
-                stepSounds = stoneStepSounds;
-                break;
+            usedStepSounds.Clear();
+
+            switch (floorType)
+            {
+                case "Wood":
+                    stepSounds = new List<AudioClip>(woodStepSounds);
+                    break;
+                case "Dirt":
+                    stepSounds = new List<AudioClip>(dirtStepSounds);
+                    break;
+                case "Grass":
+                    stepSounds = new List<AudioClip>(grassStepSounds);
+                    break;
+                case "Metal":
+                    stepSounds = new List<AudioClip>(metalStepSounds);
+                    break;
+                case "Mud":
+                    stepSounds = new List<AudioClip>(mudStepSounds);
+                    break;
+                case "Water":
+                    stepSounds = new List<AudioClip>(waterStepSounds);
+                    break;
+                case "Carpet":
+                    stepSounds = new List<AudioClip>(carpetStepSounds);
+                    break;
+                case "Stone":
+                    stepSounds = new List<AudioClip>(stoneStepSounds);
+                    break;
+            }
         }
 
-        if (randomStepSounds || stepSounds.Count > 1)
+        currentFloorType = floorType;
+
+        if (randomStepSounds)
         {
             int randomStepSound = Random.Range(0, stepSounds.Count);
-
-            if (usedStepSounds.Count == stepSounds.Count)
-                usedStepSounds.Clear();
-
-            while (usedStepSounds.Contains(stepSounds[randomStepSound]))
-            {
-                randomStepSound = Random.Range(0, stepSounds.Count);
-            }
-
             usedStepSounds.Add(stepSounds[randomStepSound]);
-            lastPlayedStepSound = stepSounds[randomStepSound];
-            yield return new WaitForSeconds(SoundManager.Instance.PlaySoundBypassTimeException(stepSounds[randomStepSound], stepVolume));
+            stepSounds.RemoveAt(randomStepSound);
+            yield return new WaitForSeconds(SoundManager.Instance.PlaySoundBypassTimeException(usedStepSounds[usedStepSounds.Count - 1], stepVolume));
         }
         else
         {
@@ -281,13 +284,10 @@ public class PlayerController : MonoBehaviour
 
     private bool CheckIfMoving()
     {
-        if (Vector3.Distance(new Vector3(transform.position.x, transform.position.y, transform.position.z), new Vector3(targetGridPos.x, targetGridPos.y, targetGridPos.z)) < 0.5f)
+        if (Vector3.Distance(new Vector3(transform.position.x, transform.position.y, transform.position.z), new Vector3(targetGridPos.x, targetGridPos.y, targetGridPos.z)) < 0.5f && canWalk)
         {
-            if (canWalk)
-            {
-                canWalk = false;
-                StartCoroutine(WaitForStep());
-            }
+            canWalk = false;
+            StartCoroutine(WaitForStep());
         }
         else
         {
@@ -299,13 +299,10 @@ public class PlayerController : MonoBehaviour
 
     private bool CheckIfTurning()
     {
-        if (Vector3.Distance(transform.eulerAngles, targetRotation) < 0.5f)
+        if (Vector3.Distance(transform.eulerAngles, targetRotation) < 0.5f && canWalk)
         {
-            if (canWalk)
-            {
-                canWalk = false;
-                StartCoroutine(WaitForRotation());
-            }
+            canWalk = false;
+            StartCoroutine(WaitForRotation());
         }
         else
         {
