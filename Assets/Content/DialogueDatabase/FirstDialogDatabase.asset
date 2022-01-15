@@ -68,7 +68,7 @@ MonoBehaviour:
     - title: Initial Value
       value: 
       type: 0
-      typeString: 
+      typeString: CustomFieldType_Text
     - title: Description
       value: 
       type: 0
@@ -2189,7 +2189,7 @@ MonoBehaviour:
       isGroup: 0
       nodeColor: 
       delaySimStatus: 0
-      falseConditionAction: 
+      falseConditionAction: Block
       conditionPriority: 2
       outgoingLinks:
       - originConversationID: 0
@@ -4531,8 +4531,8 @@ MonoBehaviour:
         y: 620
         width: 160
         height: 30
-    canvasScrollPosition: {x: 221.14232, y: 78.857025}
-    canvasZoom: 0.28000027
+    canvasScrollPosition: {x: 382.92676, y: 0}
+    canvasZoom: 0.82
   syncInfo:
     syncActors: 0
     syncItems: 0

@@ -221,7 +221,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   EffectFlags:
     components: []
-  sharedInstanceID: 82a8bcdc-a96c-4f5b-bb9a-ac0a5b34bbab
+  sharedInstanceID: 6ff7109e-88fb-4787-a540-af36d1078991
 --- !u!114 &5886056254020059586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,10 +427,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0570a09f65c77e14c9a5c2adb37e7bcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stepSounds: []
   stepVolume: 0.15
   gruntVolume: 0.25
-  randomStepSounds: 0
+  randomStepSounds: 1
   woodStepSounds:
   - {fileID: 8300000, guid: a67478320e980b2488ed8a37b8140701, type: 3}
   - {fileID: 8300000, guid: 9a1c5cb1940092b459b4679851aac605, type: 3}
